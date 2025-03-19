@@ -1,6 +1,0 @@
-@echo off
-echo Building the application...
-npx next build
-echo Starting the server...
-cd out
-python -m http.server 5000 
