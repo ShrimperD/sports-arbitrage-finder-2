@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: sports-arbitrage-finder
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: THE_ODDS_API_KEY
+        sync: false
+      - key: RAPID_API_KEY
+        sync: false
+    healthCheckPath: /
+    autoDeploy: true
+    rootDir: .
+    staticPublishPath: ./public
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: no-cache
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html 
